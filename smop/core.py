@@ -444,11 +444,18 @@ def floor(a):
 
 def fopen(*args):
     try:
-        fp = open(*args)
+        if len(args)>1:
+            if type(args[0]) == type(args[1]):
+                fp = open(args[0]+args[1])
+        else:
+            fp = open(*args)
         assert fp != -1
         return fp
     except:
         return -1
+
+def fread(fp, *args):
+    return fp.read(*args)
 
 def fflush(fp):
     fp.flush()
